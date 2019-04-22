@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AreasService } from '../../services/areas.service';
+
 
 @Component({
   selector: 'app-areas',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreasComponent implements OnInit {
 
-  constructor() { }
+  areas:any = [];
+
+  constructor(
+    private _areasService: AreasService
+  ) {
+
+    this._areasService.getAreas()
+          .subscribe( areas => { 
+              this.areas = areas;
+
+              console.log(this.areas);
+          });
+
+  }
 
   ngOnInit() {
+  }
+
+  deleteArea( id , item) {
+
+    this._areasService.deleteArea( id )
+      .subscribe(respuesta => {
+       console.log(id);
+       delete this.areas[item];
+        // if( respuesta ){
+        //   console.error(respuesta);
+        // }else{
+        //   delete this.areas[id];
+        // }
+      });
   }
 
 }

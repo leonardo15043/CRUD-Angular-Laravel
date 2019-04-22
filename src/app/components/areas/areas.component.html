@@ -1,3 +1,39 @@
-<p>
-  areas works!
-</p>
+<h1>Areas</h1>
+<hr>
+<div class="row">
+    <div class="col-md-12 text-right">
+        <button [routerLink]="['/area','nuevo' ]" class="btn btn-outline-success">
+            Nueva Area
+          </button>
+    </div>
+</div>
+<br>
+<div class="row animated fadeIn fast">
+    <div class="col-md-12">
+        <div class="table-responsive">
+
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of areas | keys; let i = index">
+                        <td>{{ i + 1}}</td>
+                        <td>{{ areas[item].name }}</td>
+                        <td>
+                            <button [routerLink]="['/area',areas[item].id]" type="button" class="btn btn-outline-success">Editar</button>
+                            <button (click)="deleteArea(areas[item].id, i)" type="button" class="btn btn-outline-danger ml-1">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+</div>

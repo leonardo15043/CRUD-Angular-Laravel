@@ -1,0 +1,24 @@
+<h3>Area <small> {{ area.name }} </small></h3>
+<button [routerLink]="['/areas']" class="btn btn-outline-danger">
+  Regresar
+</button>
+<button (click)="addNew(forma)" class="btn btn-outline-success">
+  Nueva Area
+</button>
+<hr>
+<div class="row  animated fadeIn fast">
+    <div class="col-md-12">
+        <form (ngSubmit)="saveArea()" #forma="ngForm">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" id="" placeholder="Nombre Area" [(ngModel)]="area.name" name="name" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary">
+          Guardar
+        </button>
+            </div>
+        </form>
+
+    </div>
+</div>

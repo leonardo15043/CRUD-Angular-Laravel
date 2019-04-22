@@ -8,19 +8,32 @@ import { AreasComponent } from './components/areas/areas.component';
 import { PeopleComponent } from './components/people/people.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { AreaComponent } from './components/areas/area.component';
+
+import { FormsModule } from '@angular/forms';
+import { KeysPipe } from './pipes/keys.pipe';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AreasComponent,
     PeopleComponent,
-    LoginComponent
+    LoginComponent,
+    AreaComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
