@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CountryService {
+export class UserService {
 
   private url = environment.service.url;
   private access_token = environment.service.token;
@@ -15,10 +15,13 @@ export class CountryService {
     private http: HttpClient
   ) { }
 
-  getCountry() {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.access_token);
-    return this.http.get(`${ this.url }country`, { headers }).pipe( map( data => data ));
+  getUser( user ) {
+    return this.http.post(`${ this.url }login` , user).pipe( map( data => data ));
   }
 
+  getDataUser( id ) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.access_token);
+    return this.http.get(`${ this.url }user/${ id }`, { headers });
+  }
 
 }

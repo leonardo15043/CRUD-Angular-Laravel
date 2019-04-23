@@ -14,6 +14,7 @@ import { AreaComponent } from './components/areas/area.component';
 import { FormsModule } from '@angular/forms';
 import { KeysPipe } from './pipes/keys.pipe';
 import { PersonComponent } from './components/people/person.component';
+import { UserComponent } from './components/user/user.component';
 
 
 
@@ -27,6 +28,7 @@ import { PersonComponent } from './components/people/person.component';
     AreaComponent,
     KeysPipe,
     PersonComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

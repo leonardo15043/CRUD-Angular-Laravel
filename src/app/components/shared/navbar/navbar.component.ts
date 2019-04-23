@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output , EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
+import { OutsideGuard } from '../../../outside.guard';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  @Output() menEvn: EventEmitter<boolean>;
+
+  constructor(
+    private router: Router,
+    private outsideGuard: OutsideGuard
+  ) {
+    this.menEvn = new EventEmitter();
+  }
 
   ngOnInit() {
+
+  }
+
+  logout() {
+    this.menEvn.emit(false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_user');
+    this.router.navigate(['/login']);
   }
 
 }

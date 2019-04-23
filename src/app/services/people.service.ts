@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeopleService {
 
-  private url = 'http://127.0.0.1:8000/api/';
-  private access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NTU5OTIzMDMsImV4cCI6MTU1NTk5NTkwMywibmJmIjoxNTU1OTkyMzAzLCJqdGkiOiJRZDRReTJxWEJQN1ZYeUZIIn0.bWNwE8DswtLtdp2IUqkz5byywor0tM6ZLXulpxKdl-A';
+  private url = environment.service.url;
+  private access_token = environment.service.token;
 
-
-  constructor( 
+  constructor(
     private http: HttpClient
   ) { }
 

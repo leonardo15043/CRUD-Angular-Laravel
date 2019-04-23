@@ -1,5 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar (menEvn)="out( $event )" *ngIf="showMenu"></app-navbar>
 <div class="container mt-5">
     <router-outlet></router-outlet>
-    <!-- <app-login></app-login> -->
 </div>
