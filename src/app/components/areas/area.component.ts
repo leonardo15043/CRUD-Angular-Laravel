@@ -36,8 +36,8 @@ export class AreaComponent implements OnInit {
 
   getArea( id: string) {
     this._areasService.getArea( id )
-      .subscribe( artista => {
-        this.area = artista;
+      .subscribe( area => {
+        this.area = area;
       });
   }
 
@@ -47,7 +47,7 @@ export class AreaComponent implements OnInit {
 
       this._areasService.saveArea(this.area)
       .subscribe( data => {
-         this.router.navigate(['/areas']  );
+         this.router.navigate(['/areas']);
       },
       error => console.error(error));
 

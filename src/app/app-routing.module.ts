@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AreasComponent } from './components/areas/areas.component';
 import { AreaComponent } from './components/areas/area.component';
 import { PeopleComponent } from './components/people/people.component';
+import { PersonComponent } from './components/people/person.component';
 
 const APP_ROUTES: Routes = [
     { path: 'areas', component: AreasComponent },
     { path: 'area/:id', component: AreaComponent },
     { path: 'people', component: PeopleComponent },
+    { path: 'person/:id', component: PersonComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

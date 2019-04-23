@@ -1,0 +1,67 @@
+<h3>Persona <small> {{ person.name }} </small></h3>
+<button [routerLink]="['/people']" class="btn btn-outline-danger">
+  Regresar
+</button>
+<button (click)="addNew(forma)" class="btn btn-outline-success ml-1">
+  Nueva Persona
+</button>
+<hr>
+<div class="row  animated fadeIn fast">
+    <div class="col-md-12">
+        <form (ngSubmit)="savePerson()" #forma="ngForm">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre Persona" [(ngModel)]="person.name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Identificación</label>
+                <input type="number" class="form-control" placeholder="Identificacion" [(ngModel)]="person.identification" name="identification" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha de cumpleaños</label>
+                <input type="date" class="form-control" placeholder="Fecha de cumpleaños" [(ngModel)]="person.birthdate" name="birthdate" required>
+            </div>
+            <div class="form-group">
+                <label>Genero</label>
+                <select class="form-control" name="gender" [(ngModel)]="person.gender"> 
+                  <option selected="selected">Seleccionar</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="person.email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Password" [(ngModel)]="person.password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label>País</label>
+                <select class="form-control" name="countrie_id" [(ngModel)]="person.countrie_id"> 
+                    <option selected="selected">Seleccionar</option>
+                  <option value="{{ item.id }}" *ngFor="let item of country" >{{ item.name }}</option>
+               
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Area</label>
+                <select class="form-control" name="area_id" [(ngModel)]="person.area_id"> 
+                        <option selected="selected">Seleccionar</option>
+                      <option value="{{ item.id }}" *ngFor="let item of areas" >{{ item.name }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Comentarios</label>
+                <textarea class="form-control" name="comments" [(ngModel)]="person.comments" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary">
+          Guardar
+        </button>
+            </div>
+        </form>
+
+    </div>
+</div>
