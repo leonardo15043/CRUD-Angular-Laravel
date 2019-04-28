@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AreasService } from '../../services/areas.service';
 
 
@@ -7,7 +7,7 @@ import { AreasService } from '../../services/areas.service';
   templateUrl: './areas.component.html',
   styleUrls: ['./areas.component.css']
 })
-export class AreasComponent implements OnInit {
+export class AreasComponent {
 
   areas: any = [];
 
@@ -22,10 +22,7 @@ export class AreasComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  }
-
-  deleteArea( id , item) {
+  deleteArea( id, item ) {
 
     this._areasService.deleteArea( id )
       .subscribe(data => {

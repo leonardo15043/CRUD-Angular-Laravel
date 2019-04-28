@@ -1,30 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
-  userd:any = [];
+  userd: any = [];
 
   constructor(
-    private _userService: UserService
+    private _userService: UserService,
+    private _authService: AuthService
   ) {
 
-    let idUser = localStorage.getItem('id_user');
+    const idUser = localStorage.getItem('id_user');
 
-    this._userService.getDataUser(idUser)
-    .subscribe( user => {
-       this.userd = user;
-    });
+    if ( idUser ) {
+
+      this._userService.getDataUser(idUser)
+      .subscribe( user => {
+         this.userd = user;
+      });
+
+    }
 
   }
-
-  ngOnInit() {
-  }
-
 
 }

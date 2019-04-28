@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { AuthService } from '../services/auth.service';
 
 
 @Injectable({
@@ -10,38 +11,37 @@ import { environment } from '../../environments/environment';
 export class AreasService {
 
   private url = environment.service.url;
-  private access_token = environment.service.token;
+  private headers: HttpHeaders;
 
   constructor(
-    private http: HttpClient
-  ) { }
-
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    this.headers = new HttpHeaders();
+    this.headers = this.headers.append('Content-Type', 'application/json');
+    this.headers = this.headers.append('Authorization', 'Bearer ' + this.authService.getToken());
+  }
 
   getArea( id ) {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.access_token);
-    return this.http.get(`${ this.url }areas/${ id }`, { headers });
+    return this.http.get(`${ this.url }areas/${ id }`, { headers: this.headers });
   }
 
   getAreas() {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.access_token);
-    return this.http.get(`${ this.url }areas`, { headers }).pipe( map( data => data ));
+    return this.http.get(`${ this.url }areas`, {  headers: this.headers  }).pipe( map( data => data ));
   }
 
   updateArea( area: any , id) {
     let body = JSON.stringify(area);
-    let headers = new HttpHeaders({ 'Content-Type':'application/json' }).set('Authorization', 'Bearer ' + this.access_token);
-    return this.http.post(`${ this.url }areas/edit/${ id }`, body , { headers });
+    return this.http.post(`${ this.url }areas/edit/${ id }`, body , {  headers: this.headers });
   }
 
   saveArea(area: any) {
     let body = JSON.stringify(area);
-    let headers = new HttpHeaders({ 'Content-Type':'application/json' }).set('Authorization', 'Bearer ' + this.access_token);
-    return this.http.post(`${ this.url }areas/add`, body , { headers });
+    return this.http.post(`${ this.url }areas/add`, body , { headers: this.headers });
   }
 
   deleteArea( id ) {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.access_token);
-    return this.http.get(`${ this.url }areas/delete/${ id }`, { headers }).pipe( map( res => res ));
+    return this.http.get(`${ this.url }areas/delete/${ id }`, { headers: this.headers }).pipe( map( res => res ));
   }
 
 

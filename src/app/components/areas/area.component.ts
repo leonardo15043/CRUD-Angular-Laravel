@@ -55,7 +55,7 @@ export class AreaComponent implements OnInit {
 
       this._areasService.updateArea(this.area, this.id )
       .subscribe( data => {
-        console.log(data);
+        this.router.navigate(['/areas']);
       },
       error => console.error(error));
 

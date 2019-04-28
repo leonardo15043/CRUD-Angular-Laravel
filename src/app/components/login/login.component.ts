@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 import { Router  } from '@angular/router';
 
 @Component({
@@ -8,35 +8,27 @@ import { Router  } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
-  
+export class LoginComponent {
 
   error: any;
 
   constructor(
-    private _userService: UserService,
+    private _authService: AuthService,
     private router: Router
-  ) {
-
-  }
-
-  ngOnInit() {
-  }
+  ) { }
 
   login(form: NgForm) {
-    this._userService.getUser( form.value )
+
+    this._authService.getLogin( form.value )
     .subscribe( data => {
-  
-       localStorage.setItem('id_user', data.user.id );
-       localStorage.setItem('token', data.token );
-       
-       this.router.navigate(['/user']);
+
+      localStorage.setItem('id_user', data.user.id );
+      localStorage.setItem('token', data.token );
+      this.router.navigate(['/user']);
 
     },
     dataError => {
-     
-      console.error( dataError.error.error );
+
       if ( dataError.error.error == 'invalid_credentials' ) {
         this.error = 1;
       } else {
@@ -44,6 +36,7 @@ export class LoginComponent implements OnInit {
       }
 
     });
+
   }
 
 }
